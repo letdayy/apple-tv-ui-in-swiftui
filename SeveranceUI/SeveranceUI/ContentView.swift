@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(alignment: .leading, spacing: 0) {
             ZStack(alignment: .bottomLeading) {
                 Image("severanteBanner2")
                     .resizable()
@@ -19,29 +19,31 @@ struct ContentView: View {
                     .ignoresSafeArea(.container, edges: .top)
 
                 LinearGradient(
-                    gradient: Gradient(colors: [Color.clear, Color.black.opacity(0.6)]),
+                    gradient: Gradient(stops: [
+                        .init(color: Color.clear, location: 0),
+                        .init(color: Color.gray.opacity(0.5), location: 0.5),
+                        .init(color: Color.gray.opacity(0.02), location: 1)
+                    ]),
                     startPoint: .center,
                     endPoint: .bottom
                 )
                 .frame(height: 150)
                 .frame(maxWidth: .infinity, alignment: .bottom)
+                .padding(.horizontal)
+            }
 
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Ruptura")
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .padding(.leading)
 
                     Text("Drama psicológico • 2022 • +16")
                         .font(.subheadline)
-                        .foregroundColor(.white.opacity(0.8))
-                        .padding(.leading)
                 }
-                .padding(.horizontal)
-                .padding(.bottom, 16)
-            }
+                .padding(.leading, 30)
+                .padding(.top, -30)
         }
+
         ScrollView {
             VStack(alignment: .leading) {
                 HStack(spacing: 16) {
@@ -64,8 +66,7 @@ struct ContentView: View {
                             .cornerRadius(10)
                     }
                 }
-                .padding(.horizontal)
-                .padding(.top)
+                .padding()
 
                 Text("Mark lidera uma equipe no Lumon Industries cujos funcionários foram submetidos a um procedimento de separação entre suas memórias pessoais e profissionais.")
                     .font(.body)
